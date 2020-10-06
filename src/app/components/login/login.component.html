@@ -1,0 +1,22 @@
+<div class="container">
+    <div><label class="error" *ngIf="invalidLogin"  >{{message}}</label></div>
+  <form [formGroup]="form" (ngSubmit)="authenticate()" #userForm="ngForm">
+    <div>
+      <label for="username"><b>Email </b></label>
+      <br>
+<!--      <input type="text" id="username" placeholder="Username" [(ngModel)]="userRequest.username">-->
+      <div *ngIf="form.get('username').invalid && form.get('username').touched" ><small *ngIf="form.get('username').errors.required">ERRRRROR</small></div>
+      <input class="validation" type="text" id="username" placeholder="Username" [(ngModel)]="userRequest.username" [ngModelOptions]="{standalone: true}">
+      <br>
+    </div>
+    <div>
+      <label for="inputPassword"><b>Password</b> </label>
+      <br>
+      <input type="password" id="inputPassword" placeholder="Password" [(ngModel)]="userRequest.password" [ngModelOptions]="{standalone: true}">
+<!--      <input type="password" id="inputPassword" placeholder="Password" {{userRequest?.password}}>-->
+    </div>
+    <div>
+      <button type="submit">ВХОД</button>
+    </div>
+  </form>
+</div>

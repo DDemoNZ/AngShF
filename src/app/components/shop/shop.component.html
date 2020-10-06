@@ -1,0 +1,17 @@
+<!--<div class="all">-->
+
+<div class="container">
+  <div class="item" *ngFor="let item of itemsOnPageList">
+    <div class="item-div">
+      <label>{{item.title}}</label>
+      <br>
+      <label>{{item.price}}</label>
+    </div>
+    <div class="button">
+      <button [disabled]="checkUser()" (click)="addItemToSB(item)">Add</button>
+    </div>
+  </div>
+</div>
+
+
+<!--</div>-->

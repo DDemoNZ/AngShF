@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div><label *ngIf="message !== null">{{message}}</label></div>
+
+  <div>
+
+    <form [formGroup]="userRegForm" (ngSubmit)="registration()">
+
+      <label for="username"><b>Username</b></label>
+      <div *ngIf="userRegForm.get('username').touched && userRegForm.get('username').invalid" class="validation">
+        <small>Error</small>
+      </div>
+      <input id="username" type="text" placeholder="Username" formControlName="username" [(ngModel)]="userRequest.username">
+
+      <label for="password"><b>Username</b></label>
+      <div *ngIf="userRegForm.get('password').touched && userRegForm.get('password').invalid" class="validation" >
+        <small>Error</small>
+      </div>
+      <input id="password" type="password" placeholder="Password" formControlName="password" [(ngModel)]="userRequest.password">
+
+      <label for="email"><b>Email</b></label>
+      <div *ngIf="userRegForm.get('email').touched && userRegForm.get('email').invalid" class="validation" >
+        <small>Error</small>
+      </div>
+      <input id="email" type="email" placeholder="E-mail" formControlName="email" [(ngModel)]="userRequest.email">
+
+      <button [disabled]="userRegForm.invalid" type="submit">S</button>
+
+    </form>
+
+  </div>
+</div>
