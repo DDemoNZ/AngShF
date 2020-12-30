@@ -32,25 +32,23 @@ export class LoginComponent implements OnInit {
 
   authenticate(): void {
     console.log(this.userRequest);
-    this.http.authenticate(this.userRequest).subscribe(res => {
-      console.log(res);
-      if (res.exception !== null) {
-        this.invalidLogin = true;
-        this.message = res.exception;
-        this.form.reset();
-        this.http.setUser(res.user);
-      } else {
-        sessionStorage.setItem('username', res.user.username);
-        const authString = 'Basic ' + btoa(this.userRequest.username + ':' + this.userRequest.password);
-        sessionStorage.setItem('basicauth', authString);
-        sessionStorage.setItem('role', res.user.role);
-        sessionStorage.setItem('id', res.user.id.toString());
+    this.http.authenticate(this.userRequest).subscribe(
+      res => {
+        console.log('1');
         console.log(res);
-        this.invalidLogin = false;
-        this.message = '';
+        sessionStorage.setItem('id', res.id);
+        sessionStorage.setItem('username', res.username);
+        sessionStorage.setItem('role', res.roles.join());
+        sessionStorage.setItem('generatedJwtToken', res.generatedJwtToken);
         this.router.navigate(['/']);
-      }
+      },
+      error => {
+        console.log('error response');
+        console.log(error);
+        this.router.navigate(['/error'], {state: {errorMsg: error.error.error + ', ' + error.error.message}});
+        // this.router.navigate(['error'], {state: {errorMsg: error}});
     });
   }
+
 
 }

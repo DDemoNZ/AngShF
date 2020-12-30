@@ -32,15 +32,7 @@ export class ShopComponent {
 
   getItems(currentPage: number, itemsOnPage: number): void {
     console.log('Page ' + currentPage + '  items on page ' + itemsOnPage);
-    // this.http.getAllItem(currentPage, itemsOnPage).subscribe(res => {
-    //   if (res.message !== null) {
-    //     this.errorMessage = res.message;
-    //     console.log('Error ' + this.errorMessage);
-    //   } else {
-    //     this.itemsOnPageList = res.items;
-    //     console.log('Get all items ' + this.itemsOnPageList.entries() + ' .');
-    //   }
-    // });
+
     this.http.getAllItem(currentPage, itemsOnPage).subscribe(res => {
         this.itemsOnPageList = res;
       },

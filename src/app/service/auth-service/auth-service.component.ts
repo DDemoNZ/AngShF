@@ -1,6 +1,6 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {UserRequest} from '../../models/userRequest';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {User} from '../../models/user';
 import {Observable} from 'rxjs';
 import {logger} from 'codelyzer/util/logger';
@@ -11,6 +11,7 @@ import {ItemModel} from '../../models/ItemModel';
 import {Orders} from '../../models/orders';
 import {OrderRequest} from '../../models/OrderRequest';
 import {catchError, map} from 'rxjs/operators';
+import {tokenName} from '@angular/compiler';
 
 // @Component({
 //   selector: 'app-auth-service',
@@ -37,12 +38,27 @@ export class AuthServiceComponent implements OnInit {
     return this.user;
   }
 
+  getToken(): string {
+    return sessionStorage.getItem('generatedJwtToken');
+  }
+
   authenticate(user: UserRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>('http://localhost:9090/auth/log', user);
+    const authString = 'Basic ' + btoa(user.username + ':' + user.password);
+    const headers = new HttpHeaders(
+      {
+        Authorization: authString
+      }
+    );
+    return this.http.post<AuthResponse>('http://localhost:9090/auth/login', user, {headers});
+  }
+
+  isAuthenticated(): boolean {
+    const token = this.getToken();
+    return token !== null;
   }
 
   registration(user: UserRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>('http://localhost:9090/auth/reg', user);
+    return this.http.post<AuthResponse>('http://localhost:9090/auth/registration', user);
   }
 
   postItem(item: ItemRequest): Observable<ItemResponse> {

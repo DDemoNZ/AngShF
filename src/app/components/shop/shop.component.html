@@ -1,16 +1,19 @@
 <!--<div class="all">-->
 
-<div class="container">
-  <div class="item" *ngFor="let item of itemsOnPageList">
-    <div class="item-div">
+<div class="container items">
+<!--  <div class="items" *ngFor="let item of itemsOnPageList">-->
+    <div class="item" *ngFor="let item of itemsOnPageList">
+      <img src="{{item.image}}">
+
       <label>{{item.title}}</label>
       <br>
       <label>{{item.price}}</label>
+      <div class="button">
+        <button [disabled]="checkUser()" (click)="addItemToSB(item)">Add</button>
+      </div>
+      <!--  </div>-->
     </div>
-    <div class="button">
-      <button [disabled]="checkUser()" (click)="addItemToSB(item)">Add</button>
-    </div>
-  </div>
+
 </div>
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthServiceComponent} from '../../service/auth-service/auth-service.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserRequest} from '../../models/userRequest';
@@ -40,16 +40,13 @@ export class RegistrationComponent implements OnInit {
 
 
   registration(): void {
-    this.authService.registration(this.userRequest).subscribe(res => {
-      console.log(res);
-
-      if (res.exception !== null) {
-        this.message = res.exception;
-      } else {
-        this.message = '';
-        this.router.navigate(['login']);
-      }
-    });
+    this.authService.registration(this.userRequest).subscribe(
+      res => {
+        console.log(res);
+      },
+      error => {
+        console.log(error);
+      });
   }
 
 }

@@ -2,7 +2,9 @@ import {User} from './user';
 
 export class AuthResponse {
 
-  user: User;
-  exception: string;
+  id: string;
+  username: string;
+  roles: [];
+  generatedJwtToken: string;
 
 }
