@@ -20,6 +20,8 @@ import {MatCardModule} from '@angular/material/card';
 import {AuthServiceComponent} from './service/auth-service/auth-service.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import {TokenInterceptor} from './service/auth-service/TokenInterceptor';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -47,6 +49,8 @@ import {TokenInterceptor} from './service/auth-service/TokenInterceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
+    MatSliderModule,
+    MatFormFieldModule,
   ],
   providers: [
     // AuthServiceComponent, {provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true}

@@ -1,22 +1,15 @@
 <div class="container">
   <div class="profile">
 
-    <!--  <div class="personalInfo">-->
-    <!--    <label for="username"><b>Username </b></label>-->
-    <!--    <input type="text" id="username" placeholder="username" class="validation" [(ngModel)]="user.username">-->
-    <!--    <br>-->
-
-    <!--&lt;!&ndash;    <label for="email"><b>Email  </b></label>&ndash;&gt;-->
-    <!--&lt;!&ndash;    <input type="text" id="email" placeholder="email" class="validation" [(ngModel)]="">&ndash;&gt;-->
-    <!--    <br>-->
-    <!--  </div>-->
     <button (click)="showOrders()">S</button>
     <div>
       <div class="order" *ngFor="let order of orders">
-        <div class="item">Order #{{order.id}}</div>
-        <div class="item" *ngFor="let item of order.items">
-          <label>{{item.title}}</label>
-          <label>{{item.price}}</label>
+        <div class="order">Order #{{order.id}}</div>
+        <div class="order-items">
+          <div class="item" *ngFor="let item of order.items">
+            <label>{{item.title}}</label>
+            <label>{{item.price}}</label>
+          </div>
         </div>
         <div class="item">Price - {{order.price}}</div>
       </div>

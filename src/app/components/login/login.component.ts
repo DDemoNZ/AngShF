@@ -7,7 +7,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+    styles: [`
+        input.ng-touched.ng-invalid {border:solid red 2px}
+    `]
 })
 export class LoginComponent implements OnInit {
 
@@ -19,15 +22,19 @@ export class LoginComponent implements OnInit {
   constructor(private http: AuthServiceComponent,
               private router: Router,
               private route: ActivatedRoute) {
+      this.form = new FormGroup({
+          username: new FormControl([], [Validators.required, Validators.minLength(3)]),
+          password: new FormControl([], [Validators.required, Validators.minLength(5)])
+      });
   }
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      username: new FormControl(
-        '',
-        [Validators.required],
-      )
-    });
+    // this.form = new FormGroup({
+    //   username: new FormControl(
+    //     'a',
+    //     [Validators.required],
+    //   )
+    // });
   }
 
   authenticate(): void {
@@ -40,6 +47,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('username', res.username);
         sessionStorage.setItem('role', res.roles.join());
         sessionStorage.setItem('generatedJwtToken', res.generatedJwtToken);
+        this.form.reset();
         this.router.navigate(['/']);
       },
       error => {

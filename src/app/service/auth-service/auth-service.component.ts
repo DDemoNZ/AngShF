@@ -12,6 +12,7 @@ import {Orders} from '../../models/orders';
 import {OrderRequest} from '../../models/OrderRequest';
 import {catchError, map} from 'rxjs/operators';
 import {tokenName} from '@angular/compiler';
+import {ItemPageModel} from '../../models/ItemPageModel';
 
 // @Component({
 //   selector: 'app-auth-service',
@@ -43,13 +44,7 @@ export class AuthServiceComponent implements OnInit {
   }
 
   authenticate(user: UserRequest): Observable<AuthResponse> {
-    const authString = 'Basic ' + btoa(user.username + ':' + user.password);
-    const headers = new HttpHeaders(
-      {
-        Authorization: authString
-      }
-    );
-    return this.http.post<AuthResponse>('http://localhost:9090/auth/login', user, {headers});
+    return this.http.post<AuthResponse>('http://localhost:9090/auth/login', user);
   }
 
   isAuthenticated(): boolean {
@@ -65,13 +60,13 @@ export class AuthServiceComponent implements OnInit {
     return this.http.post<ItemResponse>('http://localhost:9090/item/post', item);
   }
 
-  getAllItem(currentPage: number, itemsOnPage: number): Observable<ItemModel[]> {
+  getAllItem(currentPage: number, itemsOnPage: number): Observable<ItemPageModel> {
     // console.log('getItems');
     const body = {
       page: currentPage,
       size: itemsOnPage
     };
-    const http = this.http.get<ItemModel[]>('http://localhost:9090/item?page=' + currentPage + '&size=' + itemsOnPage);
+    const http = this.http.get<ItemPageModel>('http://localhost:9090/item?page=' + currentPage + '&size=' + itemsOnPage);
     http.subscribe(res => console.log(res));
     return http;
   }
@@ -101,5 +96,8 @@ export class AuthServiceComponent implements OnInit {
   //   }
   //   return Observable.throw(errMsg);
   // }
-
+  //
+  // getPages(): Promise<number> {
+  //   return this.http.get();
+  // }
 }

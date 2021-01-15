@@ -13,7 +13,13 @@ export class ShopComponent {
   itemsOnPageList: ItemModel[] = [];
   errorMessage: string;
   currentPage = 0;
-  itemsOnPage = 20;
+  itemsOnPage = 6;
+  itemsOnPageCounterList = [
+    {name: '5', value: 5},
+    {name: '10', value: 10},
+    {name: '20', value: 20},
+    {name: 'All', value: 100},
+  ];
 
   public itemsInBucket: ItemModel[] = [];
 
@@ -34,7 +40,8 @@ export class ShopComponent {
     console.log('Page ' + currentPage + '  items on page ' + itemsOnPage);
 
     this.http.getAllItem(currentPage, itemsOnPage).subscribe(res => {
-        this.itemsOnPageList = res;
+      console.log('res', res);
+      this.itemsOnPageList = res.content;
       },
       error => {
         this.errorMessage = error.toString();
@@ -50,5 +57,21 @@ export class ShopComponent {
 
   checkUser(): boolean {
     return sessionStorage.getItem('username') == null;
+  }
+
+  // refreshPage() {
+  //   this.getItems()
+  // }
+  // getPages(): number {
+  //   return this.http.getPages();
+  // }
+  changePage(changePage: number): void {
+    this.currentPage += changePage;
+    this.getItems(this.currentPage, this.itemsOnPage);
+  }
+
+  changeItemsPerPage(itemsPerPage: number): void {
+    this.itemsOnPage = itemsPerPage;
+    this.getItems(this.currentPage, this.itemsOnPage);
   }
 }

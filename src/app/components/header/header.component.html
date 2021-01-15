@@ -1,31 +1,23 @@
-<header class="header">
-    <div>
-      <a [routerLink]="['/']">Header</a>
-    </div>
-    <div *ngIf="checkRole() == 'ADMIN'"></div>
-    <div></div>
-    <div fxLayout="row" fxLayoutGap="20px">
-      <div>
-        <a routerLink="/">Main</a>
-      </div>
-      <div *ngIf="loginIn() !== true; else signOut">
-        <a routerLink="login">Login</a>
-      </div>
-      <div>
-        <a routerLink="registration">Reg</a>
-      </div>
-      <div>
-        <a routerLink="items">Items</a>
-      </div>
-      <div>
-        <a routerLink="bucket">Bucket</a>
-      </div>
-      <div *ngIf="loginIn() == true">
-        <a routerLink="profile">Profile</a>
-      </div>
-    </div>
+<!--<header class="header container">-->
+<header class="header ">
+  <div class="navigation  container">
+    <a [routerLink]="['/']" class="logo">Header</a>
+    <nav class="nav-bar">
+      <ul>
+        <li routerLink="/">Main</li>
+        <li *ngIf="loginIn() !== true; else signOut" routerLink="login">Login</li>
+        <li routerLink="registration">Registration</li>
+        <li routerLink="items">Items</li>
+        <li routerLink="bucket">Bucket</li>
+        <li *ngIf="loginIn() == true" routerLink="profile">Profile</li>
+      </ul>
+    </nav>
+  </div>
 
-    <ng-template #signOut>
-      <a (click)="loginOut()" routerLink="/">Sign out</a>
-    </ng-template>
+<!--  <ng-template #signOut>-->
+<!--    <a (click)="loginOut()" routerLink="/">Sign out</a>-->
+<!--  </ng-template>-->
+  <ng-template #signOut>
+    <a (click)="loginOut()" routerLink="/">Sign out</a>
+  </ng-template>
 </header>

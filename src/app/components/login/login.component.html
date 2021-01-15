@@ -1,22 +1,15 @@
-<div class="container">
-    <div><label class="error" *ngIf="invalidLogin"  >{{message}}</label></div>
-  <form [formGroup]="form" (ngSubmit)="authenticate()" #userForm="ngForm">
-    <div>
-      <label for="username"><b>Email </b></label>
-      <br>
-<!--      <input type="text" id="username" placeholder="Username" [(ngModel)]="userRequest.username">-->
-      <div *ngIf="form.get('username').invalid && form.get('username').touched" ><small *ngIf="form.get('username').errors.required">ERRRRROR</small></div>
-      <input class="validation" type="text" id="username" placeholder="Username" [(ngModel)]="userRequest.username" [ngModelOptions]="{standalone: true}">
-      <br>
+<div class="container login-wrapper">
+  <form [formGroup]="form" class="login-form">
+    <div class="login-form-row">
+<!--      <label for="username">Username</label>-->
+      <input type="text" id="username" formControlName="username" placeholder="Username" [(ngModel)]="userRequest.username" required="required">
+<!--      <span></span>-->
     </div>
-    <div>
-      <label for="inputPassword"><b>Password</b> </label>
-      <br>
-      <input type="password" id="inputPassword" placeholder="Password" [(ngModel)]="userRequest.password" [ngModelOptions]="{standalone: true}">
-<!--      <input type="password" id="inputPassword" placeholder="Password" {{userRequest?.password}}>-->
+    <div class="login-form-row">
+<!--      <label for="password">Password</label>-->
+<!--      <label for="password">Password</label>-->
+      <input type="password" id="password" formControlName="password" placeholder="Password" [(ngModel)]="userRequest.password" required="required">
     </div>
-    <div>
-      <button type="submit">ВХОД</button>
-    </div>
+    <button class="login-form-btn" [disabled]="form.invalid" (click)="authenticate()">Submit</button>
   </form>
 </div>
