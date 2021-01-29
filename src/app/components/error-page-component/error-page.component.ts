@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-error-page-component',
@@ -9,10 +9,10 @@ export class ErrorPageComponent implements OnInit {
 
   errorMessage: string;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
-    console.log(history.state.errorMsg);
     this.errorMessage = history.state.errorMsg;
   }
 

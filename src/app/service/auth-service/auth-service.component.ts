@@ -1,24 +1,15 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {UserRequest} from '../../models/userRequest';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {User} from '../../models/user';
 import {Observable} from 'rxjs';
-import {logger} from 'codelyzer/util/logger';
 import {AuthResponse} from '../../models/authResponse';
 import {ItemRequest} from '../../models/itemRequest';
 import {ItemResponse} from '../../models/itemResponse';
-import {ItemModel} from '../../models/ItemModel';
 import {Orders} from '../../models/orders';
 import {OrderRequest} from '../../models/OrderRequest';
-import {catchError, map} from 'rxjs/operators';
-import {tokenName} from '@angular/compiler';
 import {ItemPageModel} from '../../models/ItemPageModel';
 
-// @Component({
-//   selector: 'app-auth-service',
-//   templateUrl: './auth-service.component.html',
-//   styleUrls: ['./auth-service.component.css'],
-// })
 @Injectable({
   providedIn: 'root'
 })
@@ -26,7 +17,8 @@ export class AuthServiceComponent implements OnInit {
 
   user: User;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   ngOnInit(): void {
   }
@@ -61,7 +53,6 @@ export class AuthServiceComponent implements OnInit {
   }
 
   getAllItem(currentPage: number, itemsOnPage: number): Observable<ItemPageModel> {
-    // console.log('getItems');
     const body = {
       page: currentPage,
       size: itemsOnPage
@@ -73,7 +64,7 @@ export class AuthServiceComponent implements OnInit {
 
   getOrders(id: number): Observable<Orders[]> {
     console.log('id get orders ' + id);
-    return this.http.get<Orders[]>('http://localhost:9090/orders/'  + id);
+    return this.http.get<Orders[]>('http://localhost:9090/orders/' + id);
   }
 
   logOut(): void {
@@ -84,20 +75,4 @@ export class AuthServiceComponent implements OnInit {
   completeOrder(order: OrderRequest): Promise<Orders> {
     return this.http.post<Orders>('http://localhost:9090/orders', order).toPromise();
   }
-
-  // private handleError(error: Response | any) {
-  //   let errMsg: string;
-  //   console.log('Error catch ' + error);
-  //   if (errMsg instanceof Response) {
-  //     const err = error || '';
-  //     errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  //   } else {
-  //     errMsg = error.message ? error.message : error.toString();
-  //   }
-  //   return Observable.throw(errMsg);
-  // }
-  //
-  // getPages(): Promise<number> {
-  //   return this.http.get();
-  // }
 }

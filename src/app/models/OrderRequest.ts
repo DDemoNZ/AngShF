@@ -1,4 +1,3 @@
-import {User} from './user';
 import {ItemModel} from './ItemModel';
 
 export class OrderRequest {

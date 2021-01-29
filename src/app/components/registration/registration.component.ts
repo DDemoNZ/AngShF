@@ -3,8 +3,6 @@ import {AuthServiceComponent} from '../../service/auth-service/auth-service.comp
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserRequest} from '../../models/userRequest';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {MyValidators} from './validators/myValidators';
-import {placeholdersToParams} from '@angular/compiler/src/render3/view/i18n/util';
 
 @Component({
   selector: 'app-registration',
@@ -35,32 +33,20 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // ngOnInit(): void {
-  //   this.userRegForm = new FormGroup({
-  //     username: new FormControl(
-  //       'Username',
-  //       [Validators.required, Validators.minLength(1)])
-  //     ,
-  //     password: new FormControl(
-  //       'Password',
-  //       [Validators.required, Validators.minLength(5)])
-  //     ,
-  //     email: new FormControl(
-  //       'Email',
-  //       [Validators.required, Validators.minLength(1), MyValidators.restrictedEmails])
-  //   });
-  // }
-
-
   registration(): void {
     console.log(this.userRequest);
     this.authService.registration(this.userRequest).subscribe(
       res => {
-        console.log('res ', res);
         this.userRegForm.reset();
+        this.router.navigate(['/']);
       },
       error => {
-        console.log('error ', error);
+        if (error.status >= 200 && error.status < 300) {
+          this.userRegForm.reset();
+          this.router.navigate(['/login']);
+        } else {
+          this.message = error.error;
+        }
       });
   }
 

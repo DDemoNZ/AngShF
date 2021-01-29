@@ -1,14 +1,17 @@
-<div class="container bucket">
-  <h2>Your bucket</h2>
-  <div class="bucket-items">
-    <div class="item" *ngFor="let item of itemsInBucket">
-      <div>
-        <label>{{item.title}}</label>
+<div class="buck-wrap">
+  <h2>Bucket</h2>
+  <div class="buck-list">
+    <div class="bucket-item" *ngFor="let item of itemsInBucket">
+      <div class="item-b">
+        <img class="item-image" src="assets/image/{{item.imageUrl}}.jpg">
+        <p>{{item.title}}</p>
+        <p>{{item.price}}$</p>
       </div>
+
       <button (click)="delete(item)">Delete</button>
     </div>
-  </div>
-  <div *ngIf="itemsInBucket.length != 0">
-    <button class="complete-button" (click)="confirmBucketToOrder()">Complete</button>
+    <div *ngIf="itemsInBucket.length != 0">
+      <button class="complete-button" (click)="confirmBucketToOrder()">Complete</button>
+    </div>
   </div>
 </div>

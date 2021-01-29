@@ -1,49 +1,22 @@
-<!--<div class="container">-->
-
-<!--  <div><label *ngIf="message !== null">{{message}}</label></div>-->
-
-<!--  <div>-->
-
-<!--    <form [formGroup]="userRegForm" (ngSubmit)="registration()">-->
-
-<!--      <label for="username"><b>Username</b></label>-->
-<!--      <div *ngIf="userRegForm.get('username').touched && userRegForm.get('username').invalid" class="validation">-->
-<!--        <small>Error</small>-->
-<!--      </div>-->
-<!--      <input id="username" type="text" placeholder="Username" formControlName="username" [(ngModel)]="userRequest.username">-->
-
-<!--      <label for="password"><b>Username</b></label>-->
-<!--      <div *ngIf="userRegForm.get('password').touched && userRegForm.get('password').invalid" class="validation" >-->
-<!--        <small>Error</small>-->
-<!--      </div>-->
-<!--      <input id="password" type="password" placeholder="Password" formControlName="password" [(ngModel)]="userRequest.password">-->
-
-<!--      <label for="email"><b>Email</b></label>-->
-<!--      <div *ngIf="userRegForm.get('email').touched && userRegForm.get('email').invalid" class="validation" >-->
-<!--        <small>Error</small>-->
-<!--      </div>-->
-<!--      <input id="email" type="email" placeholder="E-mail" formControlName="email" [(ngModel)]="userRequest.email">-->
-
-<!--      <button [disabled]="userRegForm.invalid" type="submit">S</button>-->
-
-<!--    </form>-->
-
-<!--  </div>-->
-<!--</div>-->
-
 <div class="container reg-wrapper">
+  <div *ngIf="message" class="info-error-message">
+    <span>{{message}}</span>
+  </div>
+  <div>
+    <span>Registration</span>
+  </div>
   <form [formGroup]="userRegForm" class="reg-form">
     <div class="reg-form-row">
-<!--      <label for="email">E-mail</label>-->
-      <input type="text" id="email" placeholder="E-mail" formControlName="email" [(ngModel)]="userRequest.email" required="required">
+      <input type="text" id="email" placeholder="E-mail" formControlName="email" [(ngModel)]="userRequest.email"
+             required="required">
     </div>
     <div class="reg-form-row">
-<!--      <label for="password">Password</label>-->
-      <input type="password" id="password" placeholder="Password" formControlName="password" [(ngModel)]="userRequest.password" required="required">
+      <input type="password" id="password" placeholder="Password" formControlName="password"
+             [(ngModel)]="userRequest.password" required="required">
     </div>
     <div class="reg-form-row">
-<!--      <label for="username">Username</label>-->
-      <input type="text" placeholder="Username" id="username" formControlName="username" [(ngModel)]="userRequest.username" required="required">
+      <input type="text" placeholder="Username" id="username" formControlName="username"
+             [(ngModel)]="userRequest.username" required="required">
     </div>
     <button class="reg-form-btn" [disabled]="userRegForm.invalid" type="submit" (click)="registration()">Submit</button>
   </form>

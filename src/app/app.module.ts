@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {ShopComponent} from './components/shop/shop.component';
 import {OrderComponent} from './components/order/order.component';
@@ -18,11 +18,14 @@ import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import {AuthServiceComponent} from './service/auth-service/auth-service.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import {ProfileComponent} from './components/profile/profile.component';
 import {TokenInterceptor} from './service/auth-service/TokenInterceptor';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import {ErrorHandlerService} from './service/ErrorHandlerService';
+import {AdminComponent} from './components/admin/admin.component';
+import {ManageUsersComponent} from './components/admin/manage-users/manage-users.component';
+import {ManageItemsComponent} from './components/admin/manage-items/manage-items.component';
 
 @NgModule({
   declarations: [
@@ -37,12 +40,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     BucketComponent,
     OrderComponent,
     ProfileComponent,
+    AdminComponent,
+    ManageUsersComponent,
+    ManageItemsComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule,
-    // FlexModule,
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
@@ -53,12 +58,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatFormFieldModule,
   ],
   providers: [
-    // AuthServiceComponent, {provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true}
     AuthServiceComponent,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: ErrorHandlerService
     }
   ],
   bootstrap: [AppComponent]

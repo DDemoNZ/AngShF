@@ -1,6 +1,4 @@
-import {Component, NgModule, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RouterModule} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
 import {AuthServiceComponent} from '../../service/auth-service/auth-service.component';
 
 @Component({
@@ -11,14 +9,12 @@ import {AuthServiceComponent} from '../../service/auth-service/auth-service.comp
 export class HeaderComponent implements OnInit {
 
   constructor(private auth: AuthServiceComponent) {
-    console.log('Header constructor called');
   }
 
   ngOnInit(): void {
   }
 
   loginIn(): boolean {
-    console.log('LogIn - ' + sessionStorage.getItem('username') + ' ?');
     return sessionStorage.getItem('username') !== null;
   }
 
@@ -28,5 +24,9 @@ export class HeaderComponent implements OnInit {
 
   checkRole(): string {
     return sessionStorage.getItem('role');
+  }
+
+  checkAdmin(): boolean {
+    return sessionStorage.getItem('role') === 'ADMIN';
   }
 }

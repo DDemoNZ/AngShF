@@ -3,7 +3,6 @@ export class UserRequest {
   public password = '';
   public email = '';
 
-
   constructor() {
   }
 }

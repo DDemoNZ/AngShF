@@ -7,18 +7,19 @@
     </div>
     <form class="info-row">
       <select size="1">
-        <option  *ngFor="let counter of itemsOnPageCounterList">{{counter.name}}</option>
+        <option *ngFor="let counter of itemsOnPageCounterList">{{counter.name}}</option>
       </select>
       <!--      <button (click)="refreshPage()">Submit</button>-->
     </form>
   </div>
   <div class="item-table">
     <div class="item" *ngFor="let item of itemsOnPageList">
-      <img src="{{item.image}}">
+      <!--      <img src="src/resources/{{item.imageUrl}}.jpg">-->
+      <img class="item-image" src="assets/image/{{item.imageUrl}}.jpg">
 
       <label>{{item.title}}</label>
       <br>
-      <label>{{item.price}}</label>
+      <label>{{item.price}}$</label>
       <div class="button">
         <button [disabled]="checkUser()" (click)="addItemToSB(item)">Add</button>
       </div>
@@ -30,14 +31,5 @@
       <button [disabled]="currentPage === 0" (click)="changePage(-1)" style="cursor: pointer">Prev page</button>
       <button [disabled]="currentPage > 2" (click)="changePage(+1)" style="cursor: pointer">Next page</button>
     </div>
-<!--    <form class="info-row">-->
-<!--      <select size="1">-->
-<!--        <option selected (click)="itemsOnPage=5">5</option>-->
-<!--        <option value="20" (click)="itemsOnPage=10">10</option>-->
-<!--        <option value="30" (click)="itemsOnPage=20">20</option>-->
-<!--        <option value="100" (click)="itemsOnPage=100">All</option>-->
-<!--      </select>-->
-<!--      &lt;!&ndash;      <button (click)="refreshPage()">Submit</button>&ndash;&gt;-->
-<!--    </form>-->
   </div>
 </div>

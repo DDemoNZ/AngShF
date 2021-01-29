@@ -1,34 +1,42 @@
 <div class="container">
   <div class="profile">
-
     <button (click)="showOrders()">S</button>
-    <div>
-      <div class="order" *ngFor="let order of orders">
-        <div class="order">Order #{{order.id}}</div>
-        <div class="order-items">
-          <div class="item" *ngFor="let item of order.items">
-            <label>{{item.title}}</label>
-            <label>{{item.price}}</label>
+    <div class="order" *ngFor="let order of orders">
+      <h3 class="buck-list">Order #{{order.id}}</h3>
+      <div class="bucket-item">
+        <div class="item-b" *ngFor="let item of order.items">
+          <img class="item-image" src="assets/image/{{item.imageUrl}}.jpg">
+          <div class="order-info">
+            <p>{{item.title}}</p>
+            <p>{{item.price}}$</p>
           </div>
         </div>
-        <div class="item">Price - {{order.price}}</div>
       </div>
+      <h3 class="order-price">Price {{order.price}}$</h3>
     </div>
-    <!--  <div>-->
-    <!--    <button (click)="showOrdersCheck = !showOrdersCheck">Show orders</button>-->
-    <!--    <div *ngIf="showOrdersCheck; else doNotShowOrders"></div>-->
-    <!--    <div class="order" *ngFor="let order of orders">-->
-    <!--      <div class="order.item" *ngFor="let item of order.items">-->
-    <!--        <label>{{item.title}}</label>-->
-    <!--        <label>{{item.price}}</label>-->
-    <!--      </div>-->
-    <!--      <div class="order.price"><label>Total price - {{order.price}}</label></div>-->
-    <!--    </div>-->
-
-    <!--    <ng-template #doNotShowOrders>-->
-    <!--      <div></div>-->
-    <!--    </ng-template>-->
-    <!--  </div>-->
-
   </div>
 </div>
+
+<!--<div class="container">-->
+<!--  <div class="profile">-->
+
+<!--    <button (click)="showOrders()">S</button>-->
+
+<!--    <div class="orders-list" *ngFor="let order of orders">-->
+<!--      <div class="order">-->
+<!--        <h3 class="order-title">Order #{{order.id}}</h3>-->
+<!--        <div class="order-items">-->
+<!--          <div class="order-item" *ngFor="let item of order.items">-->
+<!--            <img class="order-image" src="assets/image/{{item.imageUrl}}.jpg">-->
+<!--            <div class="order-info">-->
+<!--              <p>{{item.title}}</p>-->
+<!--              <p>{{item.price}}$</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <h3 class="order-price">Price {{order.price}}</h3>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--</div>-->

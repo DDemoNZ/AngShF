@@ -1,19 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
-/*body {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*}*/
-
-/*body, html {*/
-/*  padding: 0;*/
-/*  margin: 0 auto 0;*/
-/*  !*height: 100%;*!*/
-/*  !*flex-direction: row;*!*/
-/*  !*display: flex;*!*/
-/*  !*justify-items: center;*!*/
-/*}*/
-
 .app {
   display: flex;
   flex-direction: column;
@@ -22,40 +6,19 @@
   min-height: 100%;
 }
 
-.header-wrap {
-  /*flex: 0 0 auto;*/
-  /*flex: 0;*/
+.logo {
+  text-decoration: none;
+  font-weight: bolder;
+  text-transform: uppercase;
+  color: black;
 }
 
-.content-wrap{
+.content-wrap {
   flex-grow: 2;
+  width: 100%;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
-
-.footer-wrap{
-  /*padding-top: 43px;*/
-  /*padding-top: 10%;*/
-  /*align-items: flex-end;*/
-  /*flex: 0 0 auto;*/
-  /*flex: 0;*/
-}
-
-/*:host {*/
-/*display: flex;*/
-/*flex-direction: column;*/
-/*flex: 1 1 100%;*/
-/*background-color: #defdda;*/
-/*}*/
-
-/*:host {*/
-/*  background-color: #defdda;*/
-/*  !*min-height: 100vh;*!*/
-/*  !*width: 100%;*!*/
-/*  !*height: 100%;*!*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  flex: 1 1 100%;*/
-/*}*/
-
 
 app-body > * {
   min-height: 100%;
@@ -64,138 +27,72 @@ app-body > * {
 
 .container {
   margin: 0 auto;
-  /*flex-grow: 2;*/
   max-width: 830px;
   min-height: 100%;
-  /*min-width: 100%;*/
   display: flex;
-  /*min-height: 100%;*/
-  /*height: 100vh;*/
-  /*padding-top: 100px;*/
-  /*min-height: calc(110%);*/
-  /*margin-top: 100px;*/
-  /*margin-bottom: 200px !important;*/
-  /*margin: 100px 0;*/
-  /*justify-content: center;*/
-  /*align-items: ;*/
+  justify-content: center;
 }
 
 .header {
   background-color: khaki;
-  /*display: flex;*/
+  display: flex;
   width: 100%;
   min-height: 50px;
-
   text-transform: uppercase;
   align-items: center;
+  justify-content: center;
 }
 
-.header > .navigation {
+.header-wrapper {
+  width: 100%;
+  position: absolute;
+}
+
+.header > .header-wrapper > .navigation {
   display: flex;
   justify-content: space-between;
-
 }
 
-.header > .navigation > .logo {
+.header > .header-wrapper > .navigation > .logo {
   padding-top: 12px;
   padding-left: 15px;
 }
 
-.header > .navigation > .nav-bar > ul {
+.header > .header-wrapper > .navigation > .nav-bar > ul {
   display: flex;
   list-style: none;
   padding-right: 15px;
 }
 
-.header > .navigation > .nav-bar > ul > li {
+.header > .header-wrapper > .navigation > .nav-bar > ul > li {
   padding-left: 40px;
 }
 
-.header > .navigation > .nav-bar > ul > li {
+.header > .header-wrapper > .navigation > .nav-bar > ul > li {
   cursor: pointer;
 }
 
 .footer {
   background-color: khaki;
-  /*padding-top: 50px;*/
   min-height: 50px;
   width: 100%;
 }
 
 /*-----------shop items-------------*/
 
-/*app-shop {*/
-/*  height: 100%;*/
-/*  flex-grow: 2;*/
-/*  min-height: 500px;*/
-/*}*/
-
-/*.items {*/
-/*  !*position: absolute;*!*/
-/*  display: flex;*/
-/*  !*flex-wrap: wrap;*!*/
-/*  !*justify-content: center;*!*/
-/*  !*margin-top: 20px;*!*/
-/*  !*margin-bottom: 20px;*!*/
-/*  flex-direction: column;*/
-/*  !*flex-direction: row;*!*/
-/*  !*justify-content: space-between;*!*/
-/*  background-color: forestgreen;*/
-/*  !*flex-shrink: 1;*!*/
-/*  flex-grow: 1;*/
-/*  !*flex-basis: auto;*!*/
-/*}*/
-
-
-/*.items > .item-table {*/
-/*  display: flex;*/
-/*  flex-grow: 2;*/
-/*  flex-wrap: wrap;*/
-/*}*/
-
-/*.items > .info-row {*/
-/*  width: 100%;*/
-/*  display: flex;*/
-/*  flex-grow: 3;*/
-/*}*/
-
-/*.items > .info-row-bottom {*/
-/*  width: 100%;*/
-/*  display: flex;*/
-/*  flex-grow: 3;*/
-/*}*/
-
-/*.item {*/
-/*  display: flex;*/
-/*  background-color: bisque;*/
-/*  min-width: 200px;*/
-/*  min-height: 100px;*/
-/*  margin: 5px 5px 5px 5px;*/
-/*  text-align: center;*/
-/*  flex-direction: column;*/
-/*  justify-content: center;*/
-/*}
-*/
 
 app-shop {
   display: flex;
   background-color: #8b706a;
-  /*min-height: 100%;*/
-  /*flex: 0 0 auto;*/
+}
+
+.item > .button {
+  margin-bottom: 10px;
 }
 
 .items {
-  /*flex: 1;*/
-  /*min-height: 100%;*/
-  /*position: absolute;*/
-  /*height: 900px;*/
   position: relative;
-  /*min-height: 95%;*/
-  background-color: #816d8b;
-  /*display: flex;*/
-  /*flex-direction: column;*/
-  /*justify-content: space-between;*/
-  margin-bottom: 41px!important;
+  margin-bottom: 41px !important;
 }
 
 .item-table {
@@ -209,33 +106,44 @@ app-shop {
 }
 
 .item {
-  height: 300px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  text-align: center;
+  /*height: 300px;*/
   width: 200px;
+  height: 300px;
   background-color: #9eea9b;
+  margin: 10px 10px;
+}
+
+.item-image {
+  max-height: 100%;
+  max-width: 100%;
   margin: 10px 10px;
 }
 
 .info-row-bottom {
   flex: 1;
   display: flex;
-  background-color: forestgreen;
+  /*background-color: forestgreen;*/
   justify-content: center;
 }
 
 .info-row {
-  flex: 1;
   display: flex;
   justify-content: center;
-  background-color: forestgreen;
 }
 
 /*----------------------------------*/
 
 
-
-
-
-
+.info-error-message {
+  border-radius: 10px;
+  border: darkred;
+  background: #eeb4b4;
+  padding: 5px 5px;
+}
 
 
 /*--------------login-page---------*/
@@ -243,6 +151,10 @@ app-shop {
   display: flex;
   justify-content: center;
   align-content: center;
+  flex-direction: column;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bolder;
 }
 
 .login-form {
@@ -260,7 +172,6 @@ app-shop {
 
 .login-form > .login-form-row > * {
   max-width: 100%;
-
 }
 
 .login-wrapper > .login-form > .login-form-row > input {
@@ -271,9 +182,6 @@ app-shop {
 }
 
 .login-wrapper > .login-form > .login-form-btn {
-  /*display: flex;*/
-  /*margin: 5px 5px;*/
-  /*padding: 5px 15px;*/
   height: 50px;
   background-color: forestgreen;
   transition: background-color 200ms;
@@ -283,12 +191,18 @@ app-shop {
   background-color: #0d400d;
   cursor: pointer;
 }
+
 /*----------------------------------*/
 
 /*----------Registration------------*/
 .reg-wrapper {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bolder;
 }
 
 
@@ -318,9 +232,6 @@ app-shop {
 }
 
 .reg-wrapper > .reg-form > .reg-form-btn {
-  /*display: flex;*/
-  /*margin: 5px 5px;*/
-  /*padding: 5px 15px;*/
   font-weight: bolder;
   height: 50px;
   background-color: forestgreen;
@@ -339,19 +250,53 @@ app-shop {
 
 /*-------------bucket---------------*/
 
-app-bucket > * {
-  align-items: center;
 
+app-bucket {
+  /*position: fixed;*/
+  width: 100%;
+  /*align-items: flex-start;*/
+  /*align-self: flex-start;*/
 }
 
-.bucket {
-  flex-direction: column;
-}
-
-.bucket-items {
+.buck-wrap {
+  text-align: center;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
+  /*min-width: 100%;*/
+  /*width: 100%;*/
+  margin: 50px 50px;
+}
+
+.buck-list {
+  /*min-width: 100%;*/
+  /*width: 100%;*/
+}
+
+.bucket-item {
+  display: flex;
+  /*flex-grow: 1;*/
+  flex-direction: row;
+  /*min-width: 100%;*/
   flex-wrap: wrap;
+}
+
+.item-b {
+  display: flex;
+  text-align: initial;
+  align-content: center;
+  justify-content: initial;
+  width: 100%;
+  max-height: 100px;
+  align-items: center;
+}
+
+.item-b > * {
+  padding-right: 20px;
+}
+
+.item-image {
+  max-height: 85%;
 }
 
 /*----------------------------------*/
@@ -359,24 +304,82 @@ app-bucket > * {
 
 /*-------------profile---------------*/
 
-app-profile > * {
-  text-align: center;
-  justify-content: center;
-  align-items: center;
+app-profile {
+  width: 100%;
+}
+
+.profile {
+  width: 100%;
 }
 
 .order-items {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  width: 100%;
+}
 
+.order {
+  border: black;
+}
+
+.order-item > * {
+  padding-right: 30px;
+}
+
+.order-item {
+  max-height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-info {
+  align-self: center;
+}
+
+.order-image {
+  height: 90px;
+}
+
+.order-title {
+  text-align: center;
+}
+
+.order {
+  padding: 0 15px;
+}
+
+.order-price {
+  text-align: right;
 }
 
 /*----------------------------------*/
-
-
-*{
+* {
   box-sizing: border-box;
 }
+
+
+/*----------------------------------*/
+
+.admin-wrapper {
+  /*display: flex;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
+  /*flex-direction: column;*/
+
+}
+
+.manage-functions {
+    display: flex;
+}
+
+.manage-functions > * {
+
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+/*----------------------------------*/
 
 html, body {
   height: 100%;

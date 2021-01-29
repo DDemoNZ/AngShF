@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {ItemModel} from '../../models/ItemModel';
 import {AuthServiceComponent} from '../../service/auth-service/auth-service.component';
 import {BucketComponent} from '../bucket/bucket.component';
@@ -14,6 +14,11 @@ export class ShopComponent {
   errorMessage: string;
   currentPage = 0;
   itemsOnPage = 6;
+  itemsInRow = 0;
+  rowsOnPage = 0;
+
+  noResize = true;
+
   itemsOnPageCounterList = [
     {name: '5', value: 5},
     {name: '10', value: 10},
@@ -23,25 +28,23 @@ export class ShopComponent {
 
   public itemsInBucket: ItemModel[] = [];
 
-  // constructor(private http: AuthServiceComponent,
-  //             private bucket: BucketComponent) {
-  // }
-
-  // ngOnInit(): void {
-  //   this.getItems(this.currentPage, this.itemsOnPage);
-  // }
+  @HostListener('window:resize', ['$event'])
+  onResize(event?): void {
+    this.itemsInRow = Math.floor(window.innerWidth > 830 ? 830 / (200 + 50) : window.innerWidth / (200 + 20));
+    this.rowsOnPage = Math.floor(window.innerHeight / (300 + 50));
+    this.getItems(this.currentPage, this.itemsInRow * this.rowsOnPage);
+  }
 
   constructor(private http: AuthServiceComponent,
               private bucket: BucketComponent) {
-    this.getItems(this.currentPage, this.itemsOnPage);
+    this.itemsInRow = Math.floor(window.innerWidth > 830 ? 830 / (200 + 50) : window.innerWidth / (200 + 20));
+    this.rowsOnPage = Math.floor(window.innerHeight / (300 + 50));
+    this.getItems(this.currentPage, this.itemsInRow * this.rowsOnPage);
   }
 
   getItems(currentPage: number, itemsOnPage: number): void {
-    console.log('Page ' + currentPage + '  items on page ' + itemsOnPage);
-
     this.http.getAllItem(currentPage, itemsOnPage).subscribe(res => {
-      console.log('res', res);
-      this.itemsOnPageList = res.content;
+        this.itemsOnPageList = res.content;
       },
       error => {
         this.errorMessage = error.toString();
@@ -59,18 +62,13 @@ export class ShopComponent {
     return sessionStorage.getItem('username') == null;
   }
 
-  // refreshPage() {
-  //   this.getItems()
-  // }
-  // getPages(): number {
-  //   return this.http.getPages();
-  // }
   changePage(changePage: number): void {
     this.currentPage += changePage;
     this.getItems(this.currentPage, this.itemsOnPage);
   }
 
   changeItemsPerPage(itemsPerPage: number): void {
+    this.noResize = true;
     this.itemsOnPage = itemsPerPage;
     this.getItems(this.currentPage, this.itemsOnPage);
   }
