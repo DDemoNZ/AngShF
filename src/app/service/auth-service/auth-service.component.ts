@@ -20,6 +20,7 @@ export class AuthServiceComponent implements OnInit {
   constructor(private http: HttpClient) {
   }
 
+  // tslint:disable-next-line:contextual-lifecycle
   ngOnInit(): void {
   }
 

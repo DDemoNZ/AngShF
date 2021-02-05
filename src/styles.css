@@ -58,6 +58,89 @@ app-body > * {
   padding-left: 15px;
 }
 
+.active {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  display: flex!important;
+}
+
+.small-nav-bar > ul {
+  padding-left: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.small-nav-bar > ul > li {
+  background: burlywood;
+  min-width: 100%;
+}
+
+.small-nav {
+  display: none;
+}
+
+@media (max-width: 763px) {
+
+  .header-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .small-nav {
+    display: flex;
+  }
+
+  .small-nav > * {
+    flex-direction: row;
+  }
+  .small-nav > .small-nav-bar > * {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .nav-bar {
+    display: none;
+  }
+
+  .small-nav-bar {
+    display: none;
+  }
+}
+@media (min-width: 763px) {
+
+  /*.header-wrapper {*/
+  /*  display: flex;*/
+  /*  flex-direction: row;*/
+  /*  justify-content: space-between;*/
+  /*}*/
+
+  .small-nav {
+    display: none;
+  }
+
+  .small-nav > * {
+    flex-direction: row;
+  }
+  .small-nav > .small-nav-bar > * {
+    display: none;
+    flex-direction: row;
+  }
+
+  /*.nav-bar {*/
+  /*  display: flex;*/
+  /*}*/
+
+  .small-nav-bar {
+    display: none;
+  }
+
+  .active {
+    display: none!important;
+  }
+}
+
 .header > .header-wrapper > .navigation > .nav-bar > ul {
   display: flex;
   list-style: none;

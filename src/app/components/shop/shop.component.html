@@ -28,8 +28,8 @@
   </div>
   <div class="info-row-bottom">
     <div>
-      <button [disabled]="currentPage === 0" (click)="changePage(-1)" style="cursor: pointer">Prev page</button>
-      <button [disabled]="currentPage > 2" (click)="changePage(+1)" style="cursor: pointer">Next page</button>
+      <button [disabled]="minPage" (click)="changePage(-1)" style="cursor: pointer">Prev page</button>
+      <button [disabled]="maxPage" (click)="changePage(+1)" style="cursor: pointer">Next page</button>
     </div>
   </div>
 </div>

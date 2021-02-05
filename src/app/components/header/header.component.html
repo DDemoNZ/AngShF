@@ -16,8 +16,25 @@
       </nav>
     </div>
 
+<div class="container small-nav">
+  <button id="menu-btn" (click)="menuSmall()">PRESS</button>
+
+</div>
     <ng-template #signOut>
       <li (click)="loginOut()" routerLink="/">Sign out</li>
     </ng-template>
   </div>
 </header>
+<div class="container">
+<nav class="small-nav-bar active">
+  <ul>
+    <li routerLink="/">Main</li>
+    <li *ngIf="loginIn() !== true; else signOut" routerLink="login">Login</li>
+    <li *ngIf="loginIn() == false" routerLink="registration">Registration</li>
+    <li routerLink="items">Items</li>
+    <li *ngIf="!checkAdmin()" routerLink="bucket">Bucket</li>
+    <li *ngIf="loginIn() == true" routerLink="profile">Profile</li>
+    <li *ngIf="checkAdmin()" routerLink="admin">Admin_Panel</li>
+  </ul>
+</nav>
+</div>

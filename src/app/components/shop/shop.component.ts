@@ -20,42 +20,49 @@ export class ShopComponent {
   noResize = true;
 
   itemsOnPageCounterList = [
-    {name: '5', value: 5},
-    {name: '10', value: 10},
-    {name: '20', value: 20},
+    {name: '6', value: 6},
+    {name: '12', value: 12},
+    {name: '15', value: 15},
     {name: 'All', value: 100},
   ];
 
   public itemsInBucket: ItemModel[] = [];
+  minPage = true;
+  maxPage = false;
 
   @HostListener('window:resize', ['$event'])
   onResize(event?): void {
-    this.itemsInRow = Math.floor(window.innerWidth > 830 ? 830 / (200 + 50) : window.innerWidth / (200 + 20));
-    this.rowsOnPage = Math.floor(window.innerHeight / (300 + 50));
-    this.getItems(this.currentPage, this.itemsInRow * this.rowsOnPage);
+    this.itemsOnPage = this.getItemsCount();
+    this.getItems(this.currentPage > 0 ? this.currentPage-- : this.currentPage, this.itemsOnPage);
   }
-
   constructor(private http: AuthServiceComponent,
               private bucket: BucketComponent) {
-    this.itemsInRow = Math.floor(window.innerWidth > 830 ? 830 / (200 + 50) : window.innerWidth / (200 + 20));
-    this.rowsOnPage = Math.floor(window.innerHeight / (300 + 50));
-    this.getItems(this.currentPage, this.itemsInRow * this.rowsOnPage);
+    this.itemsOnPage = this.getItemsCount();
+    this.getItems(this.currentPage, this.itemsOnPage);
   }
 
   getItems(currentPage: number, itemsOnPage: number): void {
     this.http.getAllItem(currentPage, itemsOnPage).subscribe(res => {
         this.itemsOnPageList = res.content;
+        this.maxPage = currentPage === res.totalPages - 1;
+        this.minPage = currentPage === 0;
+        console.log(`
+        max page ? - ${this.maxPage}
+        min page ? - ${this.minPage}
+        current page ? - ${this.currentPage}
+        `);
       },
       error => {
         this.errorMessage = error.toString();
+        if (this.currentPage > 0) {
+          this.getItems(this.currentPage--, this.itemsOnPage);
+        }
       });
   }
 
   addItemToSB(item: ItemModel): void {
-    // this.itemsSB.push(item);
     console.log('items - ' + this.itemsInBucket.forEach(console.log));
     this.bucket.addBucket(item);
-    // this.itemsInBucket.push(item);
   }
 
   checkUser(): boolean {
@@ -71,5 +78,12 @@ export class ShopComponent {
     this.noResize = true;
     this.itemsOnPage = itemsPerPage;
     this.getItems(this.currentPage, this.itemsOnPage);
+  }
+
+  private getItemsCount(): number {
+    this.itemsInRow = Math.floor(window.innerWidth > 830 ? 830 / (200 + 50) : window.innerWidth / (200 + 20));
+    this.rowsOnPage = Math.floor(window.innerHeight / (300 + 50));
+    const itemCount = this.itemsInRow * this.rowsOnPage > 0 ? this.itemsInRow * this.rowsOnPage : 3;
+    return itemCount;
   }
 }
